@@ -10,4 +10,4 @@ The following React app keeps a track of the present COVID-19 cases in the world
 
 <img src="./public/imgs/main.png"/>
 
-##Feel Free to Contribute
+## Feel Free to Contribute
