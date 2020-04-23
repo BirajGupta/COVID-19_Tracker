@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import { fetchDailyData } from '../../api/api';
 import {Line, Bar } from 'react-chartjs-2';
 
-const Charts = ( {data :{confirmed , recovered, deaths}, country}) => {
+const Charts = ( {data :{confirmed , recovered, deaths}, country, statewise}) => {
     const [dailyData, setdailyData] = useState([])
 
     useEffect(() => {
@@ -15,8 +15,24 @@ const Charts = ( {data :{confirmed , recovered, deaths}, country}) => {
     fetchApi();
     },[setdailyData]); 
     
-    const barchart = 
-            confirmed ? 
+    const barchart1 = 
+            statewise.active ? 
+            
+            <Bar
+                     data={{
+                         labels : ['Active', 'confirmed', 'Deaths', 'Recovered'],
+                         datasets: [{
+                             label: 'People',
+                             backgroundColor: ['rgba(200,100,5,0.5)','rgba(180,255,0,0.5)','rgba(255,0,86,0.5)','rgba(50,50,255,0.5)'],
+                             data:[statewise.active, statewise.confirmed, statewise.deaths, statewise.recovered]
+                         }]
+                     }}
+                     options={{
+                        title: {display: true, text:`Current State in ${statewise.state}`}
+                     }}
+                    />
+                
+            : confirmed ? 
                 <Bar
                      data={{
                          labels : ['Infected', 'Recovered', 'Deaths'],
@@ -31,6 +47,8 @@ const Charts = ( {data :{confirmed , recovered, deaths}, country}) => {
                      }}
                     />
                 : null
+
+
 
     const lineChart =
         dailyData.length ? (
@@ -54,7 +72,7 @@ const Charts = ( {data :{confirmed , recovered, deaths}, country}) => {
 
     return(
     <div className="container pb-4">
-        {country ? barchart : lineChart}
+        {country ? barchart1 : lineChart}
     </div>
     )
 }
