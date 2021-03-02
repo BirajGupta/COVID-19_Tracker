@@ -1,40 +1,23 @@
 {
-  "name": "corona",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.9.10",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.21.1",
-    "chart.js": "^2.9.3",
-    "classnames": "^2.2.6",
-    "react": "^16.13.1",
-    "react-chartjs-2": "^2.9.0",
-    "react-countup": "^4.3.3",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
-  },
+  "name": "covid-19_tracker",
+  "version": "1.0.0",
+  "description": "The following React app keeps a track of the present COVID-19 cases in the world and individual Countries.",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start":"node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BirajGupta/COVID-19_Tracker.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BirajGupta/COVID-19_Tracker/issues"
+  },
+  "homepage": "https://github.com/BirajGupta/COVID-19_Tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
