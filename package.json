@@ -4,7 +4,7 @@
   "description": "The following React app keeps a track of the present COVID-19 cases in the world and individual Countries.",
   "main": "index.js",
   "scripts": {
-    "start":"node server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/BirajGupta/COVID-19_Tracker#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1"
   }
 }
