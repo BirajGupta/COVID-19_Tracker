@@ -5,7 +5,6 @@ import Charts from './components/charts/charts';
 import Countrypicker from './components/countrypicker/countrypicker';
 import {fetchdataCountryWise, indiaStateWiseData} from './api/api'
 import corona from './image.png';
-import {states} from './api/api';
 import DNASpinner from './common/dnaSpinner';
 export default class App extends React.Component{
 
@@ -25,7 +24,7 @@ export default class App extends React.Component{
 
   handlecountrychange = async (country) => {
 
-    let found = this.state.data?.countries_stat?.filter(count => count?.country_name?.toLowerCase() == country.toLowerCase())[0]
+    let found = this.state.data?.countries_stat?.filter(count => count?.country_name?.toLowerCase() === country.toLowerCase())[0]
 
     if(found && country.toLowerCase() !== 'india') this.setState({country : found, statewise : null})
     else if(found) this.setState({country : found})

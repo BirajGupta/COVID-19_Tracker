@@ -2,7 +2,6 @@ import React, {useState, useEffect } from 'react';
 import { fetchDailyData } from '../../api/api';
 import {Line, Bar } from 'react-chartjs-2';
 import './charts.module.css'
-import { Dna } from 'react-loader-spinner'
 
 const Charts = ( {data :{world_total}, country, statewise}) => {
     const [dailyData, setdailyData] = useState([])
