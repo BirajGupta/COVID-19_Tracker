@@ -1,23 +1,24 @@
 import React, {useState, useEffect } from 'react';
 import { fetchDailyData } from '../../api/api';
 import {Line, Bar } from 'react-chartjs-2';
+import './charts.module.css'
+import { Dna } from 'react-loader-spinner'
 
-const Charts = ( {data :{confirmed , recovered, deaths}, country, statewise}) => {
+const Charts = ( {data :{world_total}, country, statewise}) => {
     const [dailyData, setdailyData] = useState([])
 
+    const fetchApi = async () => {
+        setdailyData(await fetchDailyData());
+    } 
+    console.log("daily", dailyData)
     useEffect(() => {
-        const fetchApi = async () => {
-            setdailyData(await fetchDailyData());
-        } 
-
-    
-
-    fetchApi();
+        setTimeout(() =>{
+            fetchApi();
+        }, 2000)
     },[setdailyData]); 
     
     const barchart1 = 
-            statewise.active ? 
-            
+            statewise ? 
             <Bar
                      data={{
                          labels : ['Active', 'confirmed', 'Deaths', 'Recovered'],
@@ -32,18 +33,18 @@ const Charts = ( {data :{confirmed , recovered, deaths}, country, statewise}) =>
                      }}
                     />
                 
-            : confirmed ? 
+            : country ? 
                 <Bar
                      data={{
-                         labels : ['Infected', 'Recovered', 'Deaths'],
+                         labels : ['Active Cases', 'Recovered', 'Deaths'],
                          datasets: [{
                              label: 'People',
                              backgroundColor: ['rgba(255,0,0,0.5)','rgba(0,255,0,0.5)','rgba(0,0,255,0.5)'],
-                             data:[confirmed.value, recovered.value, deaths.value]
+                             data:[Number(country?.active_cases.replaceAll(',','')), Number(country?.total_recovered.replaceAll(',','')), Number(country?.deaths.replaceAll(',',''))]
                          }]
                      }}
                      options={{
-                        title: {display: true, text:`Current State in ${country}`}
+                        title: {display: true, text:`Current State in ${country?.country_name}`}
                      }}
                     />
                 : null
@@ -51,17 +52,17 @@ const Charts = ( {data :{confirmed , recovered, deaths}, country, statewise}) =>
 
 
     const lineChart =
-        dailyData.length ? (
+        dailyData?.length ? (
         <Line
           data={{
-              labels: dailyData.map(({date}) => date),
+              labels: dailyData?.map(({date}) => date),
               datasets: [{
-                  data : dailyData.map(({ confirmed }) => confirmed),
-                  label: 'infected',
+                  data : dailyData?.map(({ confirmed }) => confirmed),
+                  label: 'Infected',
                   borderColor: '#3333ff',
                   fill: true,
               },{
-                data : dailyData.map(({ deaths }) => deaths),
+                data : dailyData?.map(({ deaths }) => deaths),
                 label: 'Deaths',
                 borderColor: 'red',
                 fill: true, 
